@@ -9,11 +9,11 @@ class User_model extends CI_Model
     parent::__construct();
   }
 
-  public function contentUser()
+  public function content()
   {
-    if ($this->session->userdata['roleId'] == 1)
+    if ($this->session->userdata['roleId'] == "admin")
     {
-      $data['viewName'] = 'master/user';
+      $data['viewName'] = 'user';
       return $data;
     }
     else
@@ -66,12 +66,8 @@ class User_model extends CI_Model
   {
     if ($this->session->userdata('role')=="admin") {
       return json_encode($this->core_model->deleteData('user', 'id', $this->input->post('id')));
-    }
-    
+    }    
   }
-
-
-
 
 }
 

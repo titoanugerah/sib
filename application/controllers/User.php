@@ -12,7 +12,7 @@ class User extends CI_Controller
   }
 
   public function index(){
-    $this->load->view('template', $this->user_model->contentUser());
+    $this->load->view('template', $this->user_model->content());
   }
 
 
