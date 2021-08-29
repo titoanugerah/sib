@@ -44,6 +44,15 @@ $route['api/supplier/create'] = 'supplier/create';
 $route['api/supplier/delete'] = 'supplier/delete';
 $route['api/supplier/update'] = 'supplier/update';
 
+#Item
+$route['item'] = 'item/index';
+$route['api/item/read'] = 'item/read';
+$route['api/item/readDetail'] = 'item/readDetail';
+$route['api/item/recover'] = 'item/recover';
+$route['api/item/create'] = 'item/create';
+$route['api/item/delete'] = 'item/delete';
+$route['api/item/update'] = 'item/update';
+
 
 #Others
 $route['template'] = 'general/template';
