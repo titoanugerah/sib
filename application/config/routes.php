@@ -4,12 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // link == controller/function
 $route['default_controller'] = 'dashboard';
 $route['profile'] = 'general/profile';
-$route['logout'] = 'general/logout';
 
 $route['dashboard'] = 'dashboard';
 
 #AUTH
 $route['login'] = 'auth/login';
+$route['validate'] = 'auth/validate';
+$route['logout'] = 'auth/logout';
 
 #ROLE
 $route['role'] = 'role';
