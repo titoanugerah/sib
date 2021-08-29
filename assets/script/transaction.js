@@ -32,6 +32,27 @@ function detailTransactionForm(id) {
   });
 }
 
+
+function detailTransactionForm2(id) {
+  $("#detailTransactionModal2").modal('show');
+  $.ajax({
+    type: "POST",
+    dataType : "JSON",
+    data : {
+       id : id,
+    },
+    url: "api/transaction/readOrderDetail",
+    success: function(result) {
+      console.log(result);
+
+    },
+    error: function(result) {
+      console.log(result);
+      notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
+    }
+  });
+}
+
 $("#keyword").on('change', function(){
   getTransaction();
   $("#keyword").val();
@@ -172,35 +193,39 @@ function getTransaction(){
     success: function(result) {
       var html = "";
       var color = "info";
+      var status = "Checkin";
       var form = "detailTransactionForm";
      var html1 = '<option value="0"> Silahkan pilih </option>';
       result.transaction.forEach(transaction => {
         if(transaction.isExist == 1){
           if(transaction.status == 1)
           {
-             color = "info"
+             form = "detailTransactionForm";
+             color = "info";
+             status = "Menunggu giliran";
+            
           }
           else if(transaction.status == 2)
           {
-            color = "warning"
+            form = "detailTransactionForm2";
+            color = "warning";
+            status = "Diproses";
           }
           else if(transaction.status == 3)
           {
-            color = "success"
+            form = "history";
+            color = "success";
+            status = "Selesai";
           }          
-          else if(transaction.status == 4)
-          {
-            color = "danger"
-          }
 
           html = html +         
-          '<div class="col-sm-6 col-md-4" onclick="detailTransactionForm('+transaction.id+')">' +
+          '<div class="col-sm-6 col-md-4" onclick="'+form+'('+transaction.id+')">' +
             '<div class="card card-stats card-'+color+' card-round">' +
                 '<div class="card-body">' +
                   '<div class="row">' + 
                     '<div class="col-12 col-stats">' +
                       '<div class="numbers">' +
-                        '<p class="card-transaction"> Transaction </p>' +
+                        '<p class="card-transaction"> '+status+' </p>' +
                         '<h4 class="card-title">' + uppercase(transaction.customer) +'</h4>' +
                       '</div>' +
                     '</div>' +

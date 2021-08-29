@@ -66,6 +66,7 @@ $route['api/service/update'] = 'service/update';
 $route['transaction'] = 'transaction/index';
 $route['api/transaction/read'] = 'transaction/read';
 $route['api/transaction/readDetail'] = 'transaction/readDetail';
+$route['api/transaction/readOrderDetail'] = 'transaction/readOrderDetail';
 $route['api/transaction/recover'] = 'transaction/recover';
 $route['api/transaction/create/new'] = 'transaction/createNew';
 $route['api/transaction/create/old'] = 'transaction/createOld';

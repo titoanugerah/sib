@@ -44,6 +44,12 @@ class Transaction_model extends CI_Model
     }
   }
 
+  public function readOrderDetail()
+  {
+    $result = $this->core_model->readSomeData('viewTransactionDetail', 'transcationId', $this->input->post('id'));
+    return json_encode($result);
+  }
+
   public function createOld()
   {
     if ($this->session->userdata('role')=="cashier") {

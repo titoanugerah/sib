@@ -28,6 +28,11 @@ class Transaction extends CI_Controller
     echo $this->transaction_model->readDetail();
   }
 
+  public function readOrderDetail()
+  {
+    echo $this->transaction_model->readOrderDetail();
+  }
+
   public function recover()
   {
     echo $this->transaction_model->recover();
@@ -52,6 +57,7 @@ class Transaction extends CI_Controller
   {
     echo $this->transaction_model->delete();
   }
+
 
 }
 

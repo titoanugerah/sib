@@ -150,3 +150,46 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="detailTransactionModal2" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <center>
+          <h4>Detail Transaksi</h4>
+        </center>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Nama Pelanggan</label>
+              <input type="text" class="form-control" id="editCustomerName" readonly>
+              <input type="text" class="form-control" id="editId" hidden>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Tanggal</label>
+              <input type="text" class="form-control" id="editDate" >
+            </div>
+          </div>
+        
+          <div class="col-md-12">
+            <div class="form-group">
+                <label>Deskripsi</label>
+                <textarea type="text" class="form-control" id="editRemark" ></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" onclick="deleteTransaction()">Hapus</button>
+          <button type="button" class="btn btn-warning" onclick="processTransaction()">Proses Transaksi</button>
+          <button type="button" class="btn btn-primary" onclick="updateTransaction()">Simpan</button>
+          <button type="button" data-dismiss="modal" class="btn btn-secondary">Kembali</button>
+        </div>
+      </div>        
+    </div>
+  </div>
+</div>
