@@ -5,12 +5,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'dashboard';
 $route['profile'] = 'general/profile';
 
-$route['dashboard'] = 'dashboard';
 
 #AUTH
 $route['login'] = 'auth/login';
 $route['validate'] = 'auth/validate';
 $route['logout'] = 'auth/logout';
+
+#DASHBOARD
+$route['dashboard'] = 'dashboard';
+
+#PROFILE
+$route['profile'] = 'profile';
 
 #ROLE
 $route['role'] = 'role';
