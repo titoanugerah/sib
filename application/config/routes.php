@@ -7,7 +7,7 @@ $route['dashboard'] = 'general/dashboard';
 $route['profile'] = 'general/profile';
 $route['logout'] = 'general/logout';
 
-
+$route['dashboard'] = 'dashboard';
 
 #ROLE
 $route['role'] = 'role';
