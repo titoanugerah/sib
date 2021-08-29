@@ -101,7 +101,7 @@
 								<div class="dropdown-user-scroll scrollbar-outer" <?php if($this->session->userdata('isLogin')){echo "hidden";}?>>
 									<li>
 										<div class="user-box">
-											<div class="card card-info card-annoucement card-round">
+											<div class="card card-info card-annoucement card-round card-danger">
 												<div class="card-body text-center">
 													<div class="card-opening">Belum Login</div>
 													<div class="card-desc">
