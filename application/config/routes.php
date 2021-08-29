@@ -53,6 +53,15 @@ $route['api/item/create'] = 'item/create';
 $route['api/item/delete'] = 'item/delete';
 $route['api/item/update'] = 'item/update';
 
+#Item
+$route['service'] = 'service/index';
+$route['api/service/read'] = 'service/read';
+$route['api/service/readDetail'] = 'service/readDetail';
+$route['api/service/recover'] = 'service/recover';
+$route['api/service/create'] = 'service/create';
+$route['api/service/delete'] = 'service/delete';
+$route['api/service/update'] = 'service/update';
+
 
 #Others
 $route['template'] = 'general/template';
