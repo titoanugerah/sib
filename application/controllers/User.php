@@ -11,10 +11,10 @@ class User extends CI_Controller
     $this->load->model('user_model');
   }
 
-  public function index(){
+  public function index()
+  {
     $this->load->view('template', $this->user_model->content());
   }
-
 
   #API
   public function read()

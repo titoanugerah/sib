@@ -11,7 +11,7 @@ class User_model extends CI_Model
 
   public function content()
   {
-    if ($this->session->userdata['roleId'] == "admin")
+    if ($this->session->userdata['role'] == "admin")
     {
       $data['viewName'] = 'user';
       return $data;
