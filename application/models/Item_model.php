@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Supplier_model extends CI_Model
+class Item_model extends CI_Model
 {
 
   function __construct()
@@ -13,7 +13,7 @@ class Supplier_model extends CI_Model
   {
     if ($this->session->userdata['role'] == "admin")
     {
-      $data['viewName'] = 'supplier';
+      $data['viewName'] = 'item';
       return $data;
     }
     else
@@ -27,27 +27,27 @@ class Supplier_model extends CI_Model
     if ($this->session->userdata('role')=="admin") {
       $input = $this->input->post();
       $input['adminId'] = $this->session->userdata('id');
-      $result = $this->core_model->createData('supplier',  $input);
+      $result = $this->core_model->createData('item',  $input);
       return json_encode($result);
     }
     
   }
   public function read()
   {
-    $data['supplier'] = $this->core_model->readAllData('supplier');
+    $data['item'] = $this->core_model->readAllData('item');
     return json_encode($data);
   }
 
   public function readDetail()
   {
-    $data['detail'] = $this->core_model->readSingleData('supplier', 'id', $this->input->post('id'));
+    $data['detail'] = $this->core_model->readSingleData('item', 'id', $this->input->post('id'));
     return json_encode($data);
   }
 
   public function update()
   {
     if ($this->session->userdata('role')=="admin") {
-      return json_encode($this->core_model->updateDataBatch('supplier',  'id', $this->input->post('id'), $this->input->post()));
+      return json_encode($this->core_model->updateDataBatch('item',  'id', $this->input->post('id'), $this->input->post()));
     }
     
   }
@@ -55,18 +55,17 @@ class Supplier_model extends CI_Model
   public function recover()
   {
     if ($this->session->userdata('role')=="admin") {
-      return json_encode($this->core_model->recoverData('supplier', 'id', $this->input->post('id')));
+      return json_encode($this->core_model->recoverData('item', 'id', $this->input->post('id')));
     }
   }
 
   public function delete()
   {
     if ($this->session->userdata('role')=="admin") {
-      return json_encode($this->core_model->deleteData('supplier', 'id', $this->input->post('id')));
+      return json_encode($this->core_model->deleteData('item', 'id', $this->input->post('id')));
     }
     
   }
-
 
 }
 

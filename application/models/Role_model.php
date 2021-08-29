@@ -9,7 +9,7 @@ class Role_model extends CI_Model
     parent::__construct();
   }
 
-  public function contentRole()
+  public function content()
   {
     if ($this->session->userdata['role'] == "admin")
     {

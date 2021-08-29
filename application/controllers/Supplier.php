@@ -12,7 +12,7 @@ class Supplier extends CI_Controller
 
     function index()
     {
-        $this->load->view('template', $this->supplier_model->contentSupplier());
+        $this->load->view('template', $this->supplier_model->content());
     }
 
     public function read()
