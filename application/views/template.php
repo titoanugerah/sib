@@ -108,7 +108,7 @@
 														Silahkan lakukan login terlebih dahulu dengan mengklik tombol login dibawah ini
 													</div>
 													<div class="card-detail">
-														<a class="btn btn-light btn-rounded" href="<?php echo $this->session->flashdata('link'); ?>">Login</a>
+														<a class="btn btn-light btn-rounded" href="<?php echo base_url('auth/login'); ?>">Login</a>
 													</div>
 												</div>
 											</div>
