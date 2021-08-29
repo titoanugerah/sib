@@ -2,12 +2,20 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 // link == controller/function
-$route['default_controller'] = 'general/dashboard';
-$route['dashboard'] = 'general/dashboard';
+$route['default_controller'] = 'dashboard';
 $route['profile'] = 'general/profile';
-$route['logout'] = 'general/logout';
 
 
+#AUTH
+$route['login'] = 'auth/login';
+$route['validate'] = 'auth/validate';
+$route['logout'] = 'auth/logout';
+
+#DASHBOARD
+$route['dashboard'] = 'dashboard';
+
+#PROFILE
+$route['profile'] = 'profile';
 
 #ROLE
 $route['role'] = 'role';
@@ -36,6 +44,33 @@ $route['api/supplier/create'] = 'supplier/create';
 $route['api/supplier/delete'] = 'supplier/delete';
 $route['api/supplier/update'] = 'supplier/update';
 
+#Item
+$route['item'] = 'item/index';
+$route['api/item/read'] = 'item/read';
+$route['api/item/readDetail'] = 'item/readDetail';
+$route['api/item/recover'] = 'item/recover';
+$route['api/item/create'] = 'item/create';
+$route['api/item/delete'] = 'item/delete';
+$route['api/item/update'] = 'item/update';
+
+#Item
+$route['service'] = 'service/index';
+$route['api/service/read'] = 'service/read';
+$route['api/service/readDetail'] = 'service/readDetail';
+$route['api/service/recover'] = 'service/recover';
+$route['api/service/create'] = 'service/create';
+$route['api/service/delete'] = 'service/delete';
+$route['api/service/update'] = 'service/update';
+
+#Transaction
+$route['transaction'] = 'transaction/index';
+$route['api/transaction/read'] = 'transaction/read';
+$route['api/transaction/readDetail'] = 'transaction/readDetail';
+$route['api/transaction/recover'] = 'transaction/recover';
+$route['api/transaction/create/new'] = 'transaction/createNew';
+$route['api/transaction/create/old'] = 'transaction/createOld';
+$route['api/transaction/delete'] = 'transaction/delete';
+$route['api/transaction/update'] = 'transaction/update';
 
 #Others
 $route['template'] = 'general/template';

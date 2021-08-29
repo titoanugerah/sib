@@ -7,12 +7,11 @@ class Role extends CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('core_model');
     $this->load->model('role_model');
   }
 
   public function index(){
-    $this->load->view('template', $this->role_model->contentRole());
+    $this->load->view('template', $this->role_model->content());
   }
 
 

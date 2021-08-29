@@ -12,31 +12,11 @@ class General_model extends CI_Model
     error_reporting(0);
   }
 
-  public function contentWelcome()
-  {
-    $data['viewName'] = 'welcome';
-    $this->account();
-    return $data;
-  }
-
   public function contentTemplate()
   {
     $data['viewName'] = 'blank';
     return $data;
   }
-
-  public function contentDashboard()
-  {
-    $data['viewName'] = 'dashboard';
-    if($this->session->userdata('isLogin')){
-      if($this->session->userdata('roleId')==2){
-        $data['performance'] = ($this->db->query('SELECT * FROM viewBackup where spvId = '.$this->session->userdata['id']))->result();
-      }
-    }
-    $this->account();
-    return $data;
-  }
-
 
   public function account()
   {

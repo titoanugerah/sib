@@ -7,13 +7,14 @@ class Role_model extends CI_Model
   function __construct()
   {
     parent::__construct();
+    $this->load->model('core_model');
   }
 
-  public function contentRole()
+  public function content()
   {
-    if ($this->session->userdata['roleId'] == 1)
+    if ($this->session->userdata['role'] == "admin")
     {
-      $data['viewName'] = 'master/role';
+      $data['viewName'] = 'role';
       return $data;
     }
     else

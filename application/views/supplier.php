@@ -5,7 +5,6 @@
         <h2 class="text-white pb-2 fw-bold" >Supplier </h2>
       </div>
       <div class="ml-md-auto py-2 py-md-0">
-      <a href="<?php echo base_url('api/supplier/download'); ?>" class="btn btn-white btn-border btn-round mr-2" >Download Rekap </a>
         <button type="button" class="btn btn-white btn-border btn-round mr-2" onclick="addNewSupplierForm()">Tambah Supplier  Baru</button>
       </div>
     </div>
