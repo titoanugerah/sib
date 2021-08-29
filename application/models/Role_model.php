@@ -11,9 +11,9 @@ class Role_model extends CI_Model
 
   public function contentRole()
   {
-    if ($this->session->userdata['roleId'] == 1)
+    if ($this->session->userdata['role'] == "admin")
     {
-      $data['viewName'] = 'master/role';
+      $data['viewName'] = 'role';
       return $data;
     }
     else

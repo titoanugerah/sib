@@ -13,7 +13,7 @@ class Supplier_model extends CI_Model
   {
     if ($this->session->userdata['role'] == "admin")
     {
-      $data['viewName'] = 'master/supplier';
+      $data['viewName'] = 'supplier';
       return $data;
     }
     else
