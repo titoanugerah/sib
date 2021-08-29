@@ -33,9 +33,14 @@ class Transaction extends CI_Controller
     echo $this->transaction_model->recover();
   }
 
-  public function create()
+  public function createNew()
   {
-    echo $this->transaction_model->create();
+    echo $this->transaction_model->createNew();
+  }
+
+  public function createOld()
+  {
+    echo $this->transaction_model->createOld();
   }
 
   public function update()
