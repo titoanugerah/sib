@@ -45,15 +45,15 @@ $route['api/supplier/delete'] = 'supplier/delete';
 $route['api/supplier/update'] = 'supplier/update';
 
 #Item
-$route['item'] = 'item/index';
-$route['api/item/read'] = 'item/read';
-$route['api/item/readDetail'] = 'item/readDetail';
-$route['api/item/recover'] = 'item/recover';
-$route['api/item/create'] = 'item/create';
-$route['api/item/delete'] = 'item/delete';
-$route['api/item/update'] = 'item/update';
+$route['goods'] = 'goods/index';
+$route['api/goods/read'] = 'goods/read';
+$route['api/goods/readDetail'] = 'goods/readDetail';
+$route['api/goods/recover'] = 'goods/recover';
+$route['api/goods/create'] = 'goods/create';
+$route['api/goods/delete'] = 'goods/delete';
+$route['api/goods/update'] = 'goods/update';
 
-#Item
+#Service
 $route['service'] = 'service/index';
 $route['api/service/read'] = 'service/read';
 $route['api/service/readDetail'] = 'service/readDetail';

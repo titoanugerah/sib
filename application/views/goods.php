@@ -6,20 +6,20 @@
       </div>
       <div class="ml-md-auto py-2 py-md-0">
         <a href="#" class="btn btn-white btn-border btn-round mr-2" hidden>Manage</a>
-        <button type="button" class="btn btn-white btn-border btn-round mr-2" onclick="addNewItemForm()">Tambah Barang Baru</button>
+        <button type="button" class="btn btn-white btn-border btn-round mr-2" onclick="addNewGoodsForm()">Tambah Barang Baru</button>
       </div>
     </div>
   </div>
 </div>
 
 <div class="page-inner mt--5" >
-  <div class="row mt--2" id="itemList">
+  <div class="row mt--2" id="goodsList">
 
   </div>
 </div>
 
 
-<div class="modal fade" id="addItemModal" role="dialog">
+<div class="modal fade" id="addGoodsModal" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -68,7 +68,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" onclick="addItem()">Simpan</button>
+              <button type="button" class="btn btn-primary" onclick="addGoods()">Simpan</button>
               <button type="button" data-dismiss="modal" class="btn btn-secondary">Kembali</button>
             </div>
 
@@ -77,12 +77,12 @@
             <div class="form-group">
               <label>Nama Barang</label>
               &nbsp;&nbsp;&nbsp;&nbsp;
-              <select class="form-control select2addmodal" id="recoverItemId" style="width:360px">
+              <select class="form-control select2addmodal" id="recoverGoodsId" style="width:360px">
 
               </select>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" onclick="recoverItem()">Pulihkan</button>
+              <button type="button" class="btn btn-primary" onclick="recoverGoods()">Pulihkan</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
             </div>
           </div>
@@ -92,7 +92,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="detailItemModal" role="dialog">
+<div class="modal fade" id="detailGoodsModal" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -130,8 +130,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" onclick="deleteItem()">Hapus</button>
-          <button type="button" class="btn btn-primary" onclick="updateItem()">Simpan</button>
+          <button type="button" class="btn btn-danger" onclick="deleteGoods()">Hapus</button>
+          <button type="button" class="btn btn-primary" onclick="updateGoods()">Simpan</button>
           <button type="button" data-dismiss="modal" class="btn btn-secondary">Kembali</button>
         </div>
       </div>        

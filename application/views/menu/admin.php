@@ -28,7 +28,7 @@
 </li>
 
 <li class="nav-item active" >
-  <a href="<?php echo base_url('item'); ?>">
+  <a href="<?php echo base_url('goods'); ?>">
     <i class="fas fa-box"></i>
     <p>Barang</p>
   </a>
