@@ -44,7 +44,7 @@ $route['api/supplier/create'] = 'supplier/create';
 $route['api/supplier/delete'] = 'supplier/delete';
 $route['api/supplier/update'] = 'supplier/update';
 
-#Item
+#Goods
 $route['goods'] = 'goods/index';
 $route['api/goods/read'] = 'goods/read';
 $route['api/goods/readDetail'] = 'goods/readDetail';
@@ -61,6 +61,15 @@ $route['api/service/recover'] = 'service/recover';
 $route['api/service/create'] = 'service/create';
 $route['api/service/delete'] = 'service/delete';
 $route['api/service/update'] = 'service/update';
+
+#Stock
+$route['stock'] = 'stock/index';
+$route['api/stock/read'] = 'stock/read';
+$route['api/stock/readDetail'] = 'stock/readDetail';
+$route['api/stock/recover'] = 'stock/recover';
+$route['api/stock/create'] = 'stock/create';
+$route['api/stock/delete'] = 'stock/delete';
+$route['api/stock/update'] = 'stock/update';
 
 #Transaction
 $route['transaction'] = 'transaction/index';
