@@ -66,10 +66,7 @@ $route['api/service/update'] = 'service/update';
 $route['stock'] = 'stock/index';
 $route['api/stock/read'] = 'stock/read';
 $route['api/stock/readDetail'] = 'stock/readDetail';
-$route['api/stock/recover'] = 'stock/recover';
 $route['api/stock/create'] = 'stock/create';
-$route['api/stock/delete'] = 'stock/delete';
-$route['api/stock/update'] = 'stock/update';
 
 #Transaction
 $route['transaction'] = 'transaction/index';

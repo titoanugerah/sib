@@ -50,21 +50,6 @@ class Stock_model extends CI_Model
   {
     if ($this->session->userdata('role')=="admin") {
       return json_encode($this->core_model->updateDataBatch('stock',  'id', $this->input->post('id'), $this->input->post()));
-    }
-    
-  }
-
-  public function recover()
-  {
-    if ($this->session->userdata('role')=="admin") {
-      return json_encode($this->core_model->recoverData('stock', 'id', $this->input->post('id')));
-    }
-  }
-
-  public function delete()
-  {
-    if ($this->session->userdata('role')=="admin") {
-      return json_encode($this->core_model->deleteData('stock', 'id', $this->input->post('id')));
     }    
   }
 

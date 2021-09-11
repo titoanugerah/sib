@@ -41,50 +41,24 @@ $("#keyword").on('change', function(){
   $("#keyword").val();
 })
 
-function updateStock(){
-  $.ajax({
-    type: "POST",
-    dataType : "JSON",
-    data : {
-       id : $("#editId").val(),
-       name : $("#editName").val(),
-       price : $("#editPrice").val(),
-       remark : $("#editRemark").val(),       
-    },
-    url: "api/stock/update",
-    success: function(result) {
-      $("#detailStockModal").modal('hide');
-      getStock();
-      notify('fas fa-check', 'Berhasil', result.content, 'success');
-    },
-    error: function(result) {
-      notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
-    }
-  });
-}
-
-function addNewStockForm() {
-  $('#keyword').val("");
-  getStock();
-  $("#addStockModal").modal('show');
-}
 
 function addStock() {
   $.ajax({
     type: "POST",
     dataType : "JSON",
     data : {
-       name : $("#addName").val(),
-       price : $("#addPrice").val(),
-       remark : $("#addRemark").val(),       
+       itemId : $("#editId").val(),
+       stockTypeId : $("#addStockTypeId").val(),
+       qty : $("#addQty").val(),       
     },
     url: "api/stock/create",
     success: function(result) {
-      $("#addStockModal").modal('hide');
+      $("#detailStockModal").modal('hide');
       notify('fas fa-check', 'Berhasil', result.content, 'success');
       getStock();
     },
     error: function(result) {
+      $("#detailStockModal").modal('hide');
       console.log(result);
       notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
     }
@@ -167,52 +141,6 @@ function  getStock(){
 function uppercase(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
-function deleteStock() {
-  $.ajax({
-    type: "POST",
-    dataType : "JSON",
-    data : {
-       id : $("#editId").val(),
-    },
-    url: "api/stock/delete",
-    success: function(result) {
-      $("#detailStockModal").modal('hide');
-      notify('fas fa-check', 'Berhasil', result.content, 'success');
-      getStock();
-    },
-    error: function(result) {
-      console.log(result);
-       notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
-    }
-  });
-}
-
-function recoverStock() {
-  if($('#recoverStockId').val()!=0)
-  {
-    $.ajax({
-      type: "POST",
-      dataType : "JSON",
-      data : {
-        id : $("#recoverStockId").val(),
-      },
-      url: "api/stock/recover",
-      success: function(result) {
-        $("#addStockModal").modal('hide');
-        notify('fas fa-check', 'Berhasil', result.content, 'success');
-        getStock();
-      },
-      error: function(result) {
-        notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
-      }
-    });
-
-  } else {
-    notify('fas fa-bell', 'Gagal', 'Mohon pilih dengan benar', 'danger');
-  }
-}
-
 
 
 function unauthorized() {
