@@ -41,7 +41,8 @@ class Stock_model extends CI_Model
 
   public function readDetail()
   {
-    $data['detail'] = $this->core_model->readSingleData('stock', 'id', $this->input->post('id'));
+    $data['detail'] = $this->core_model->readSingleData('viewStock', 'id', $this->input->post('id'));
+    $data['history'] = $this->core_model->readSomedata('viewStockHistory', 'itemId', $this->input->post('id'));
     return json_encode($data);
   }
 
@@ -64,8 +65,7 @@ class Stock_model extends CI_Model
   {
     if ($this->session->userdata('role')=="admin") {
       return json_encode($this->core_model->deleteData('stock', 'id', $this->input->post('id')));
-    }
-    
+    }    
   }
 
 }

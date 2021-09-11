@@ -32,7 +32,8 @@ class Goods_model extends CI_Model
       $result = $this->core_model->createData('item',  $input);
       $data = array(
         'itemId' => $this->db->insert_id(),
-        'qty' => 0,
+        'stockTypeId' => 0,
+        'qty' => 0,      
         'adminId' => $this->session->userdata('id')
       );
       $result = $this->core_model->createData('stock',  $data);
