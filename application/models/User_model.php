@@ -27,7 +27,6 @@ class User_model extends CI_Model
     if ($this->session->userdata('role')=="admin") {
       if($this->input->post('roleId')!=0){
         $data = $this->input->post();
-        $data['adminId'] = $this->session->userdata('id');
         return json_encode($this->core_model->createData('user', $data));
       } else {
         return http_response_code(500, $result);
