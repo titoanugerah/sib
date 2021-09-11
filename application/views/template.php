@@ -148,7 +148,7 @@
 										</a>
 									</li>
                   <li <?php if($this->session->userdata('isLogin')){echo "hidden"; } ?>>
-										<a href="#edit">
+										<a href="<?php echo base_url('login'); ?>">
 											<span class="link-collapse">Login</span>
 										</a>
 									</li>
