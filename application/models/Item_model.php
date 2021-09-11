@@ -27,6 +27,7 @@ class Item_model extends CI_Model
     if ($this->session->userdata('role')=="admin") {
       $input = $this->input->post();
       $input['adminId'] = $this->session->userdata('id');
+      $input['categoryId'] = $this->config->item('category_goods_id');
       $result = $this->core_model->createData('item',  $input);
       return json_encode($result);
     }
@@ -34,7 +35,7 @@ class Item_model extends CI_Model
   }
   public function read()
   {
-    $data['item'] = $this->core_model->readAllData('item');
+    $data['item'] = $this->core_model->readSomeData('item', 'categoryId', $this->config->item('category_goods_id'));
     return json_encode($data);
   }
 
