@@ -12,6 +12,9 @@ $(document).ready(function(){
 
 function detailTransactionForm(id) {
   $("#detailTransactionModal").modal('show');
+  $("#btnTransaction").show();
+  $("#btnFinish").hide();
+
   $.ajax({
     type: "POST",
     dataType : "JSON",
@@ -37,7 +40,10 @@ function detailTransactionForm(id) {
 
 
 function detailTransactionForm2(id) {
+  
   $("#detailTransactionModal").modal('show');
+  $("#btnTransaction").hide();
+  $("#btnFinish").show();
   $.ajax({
     type: "POST",
     dataType : "JSON",
@@ -383,6 +389,27 @@ function processTransaction() {
     data : {
        id : $("#editId").val(),
        status : 2
+    },
+    url: "api/transaction/update",
+    success: function(result) {
+      $("#detailTransactionModal").modal('hide');
+      notify('fas fa-check', 'Berhasil', result.content, 'success');
+      getTransaction();
+    },
+    error: function(result) {
+      console.log(result);
+       notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
+    }
+  });
+}
+
+function finishTransaction() {
+  $.ajax({
+    type: "POST",
+    dataType : "JSON",
+    data : {
+       id : $("#editId").val(),
+       status : 3
     },
     url: "api/transaction/update",
     success: function(result) {

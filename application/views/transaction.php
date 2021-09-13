@@ -109,7 +109,7 @@
 </div>
 
 <div class="modal fade" id="detailTransactionModal" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <center>
@@ -195,7 +195,8 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" onclick="deleteTransaction()">Hapus</button>
-          <button type="button" class="btn btn-warning" onclick="processTransaction()">Proses Transaksi</button>
+          <button type="button" class="btn btn-warning" onclick="processTransaction()" id="btnTransaction">Proses Transaksi</button>
+          <button type="button" class="btn btn-warning" onclick="finishTransaction()" id="btnFinish">Selesaikan Transaksi</button>
           <button type="button" class="btn btn-primary" onclick="updateTransaction()">Simpan</button>
           <button type="button" data-dismiss="modal" class="btn btn-secondary">Kembali</button>
         </div>
