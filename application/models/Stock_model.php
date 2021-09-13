@@ -46,11 +46,23 @@ class Stock_model extends CI_Model
     }
     
   }
+
   public function read()
   {
     $data['stock'] = $this->core_model->readAllData('viewStock');
     return json_encode($data);
   }
+
+  public function datatables()
+  {
+    $data['draw'] = 1;
+    $data['recordsTotal'] = 57;
+    $data['recordsFilterd'] = 57;
+    
+    $data['data'] = $this->core_model->readAllData('viewStockHistory');
+    return json_encode($data);
+  }
+
 
   public function readDetail()
   {

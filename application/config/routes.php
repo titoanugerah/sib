@@ -65,6 +65,7 @@ $route['api/service/update'] = 'service/update';
 #Stock
 $route['stock'] = 'stock/index';
 $route['stock/report'] = 'stock/report';
+$route['api/stock/read/datatables'] = 'stock/datatables';
 $route['api/stock/read'] = 'stock/read';
 $route['api/stock/readDetail'] = 'stock/readDetail';
 $route['api/stock/create'] = 'stock/create';

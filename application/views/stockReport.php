@@ -17,7 +17,29 @@
             <div class="card-title">Laporan Stok Barang</div>
             <div class="d-flex flex-wrap justify-content-around pb-2 pt-4"></div>
             <div class="card-body">      
-            
+              <table id="example" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Tanggal</th>
+                      <th>Nama Barang</th>
+                      <th>Keterangan</th>
+                      <th>Jumlah</th>
+                      <th>Petugas</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                      <th>ID</th>
+                      <th>Tanggal</th>
+                      <th>Nama Barang</th>
+                      <th>Keterangan</th>
+                      <th>Jumlah</th>
+                      <th>Petugas</th>
+                  </tr>
+                </tfoot>
+              </table>
+
             </div>
           </div>
         </div>

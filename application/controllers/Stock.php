@@ -26,6 +26,11 @@ class Stock extends CI_Controller
     echo $this->stock_model->read();
   }
 
+  public function datatables()
+  {
+    echo $this->stock_model->datatables();
+  }
+
   public function readDetail()
   {
     echo $this->stock_model->readDetail();
