@@ -10,10 +10,15 @@ class Stock extends CI_Controller
     $this->load->model('stock_model');
   }
 
-  public function index(){
+  public function index()
+  {
     $this->load->view('template', $this->stock_model->content());
   }
 
+  public function report()
+  {
+    $this->load->view('template', $this->stock_model->contentReport());
+  }
 
   #API
   public function read()

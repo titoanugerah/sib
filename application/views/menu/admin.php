@@ -56,7 +56,7 @@
 </li> 
 
 <li class="nav-item active" >
-  <a href="<?php echo base_url('report/stock'); ?>">
+  <a href="<?php echo base_url('stock/report'); ?>">
     <i class="fas fa-book-open"></i>
     <p>Laporan Barang</p>
   </a>

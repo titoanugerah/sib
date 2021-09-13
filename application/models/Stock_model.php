@@ -23,6 +23,19 @@ class Stock_model extends CI_Model
     }
   }
 
+  public function contentReport()
+  {
+    if ($this->session->userdata['role'] == "admin")
+    {
+      $data['viewName'] = 'stockReport';
+      return $data;
+    }
+    else
+    {
+      notify("Tidak Ada Akses", "Mohon maaf anda tidak memiliki hak akses untuk dapat mengakses halaman ini, silahkan hubungi IT Admin atau Super Admin", "danger", "fas fa-ban", "dashboard" );
+    }
+  }
+
   public function create()
   {
     if ($this->session->userdata('role')=="admin") {
