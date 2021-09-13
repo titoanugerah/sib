@@ -46,7 +46,17 @@ class Transaction_model extends CI_Model
 
   public function readOrderDetail()
   {
-    $result = $this->core_model->readSomeData('viewTransactionDetail', 'transcationId', $this->input->post('id'));
+    $result['detail'] = $this->core_model->readSingleData('viewTransactionDetail', 'id', $this->input->post('id'));
+    $result['order'] = $this->core_model->readSomeData('viewDetailTransaction', 'transactionId', $this->input->post('id'));
+    return json_encode($result);
+  }
+
+  public function createOrder()
+  {
+    $input = $this->input->post();
+    $input["price"] = ($this->core_model->readSingleData('item', 'id', $input['itemId']))->price;
+    $input["total"] = $input['price'] * $input['qty'];
+    $result = $this->core_model->createData('detailtransaction', $input );
     return json_encode($result);
   }
 
@@ -93,7 +103,13 @@ class Transaction_model extends CI_Model
     if ($this->session->userdata('role')=="cashier") {
       return json_encode($this->core_model->deleteData('transaction', 'id', $this->input->post('id')));
     }
+  }
 
+  public function deleteOrder()
+  {
+    if ($this->session->userdata('role')=="cashier") {
+      return json_encode($this->core_model->deleteData('detailtransaction', 'id', $this->input->post('id')));
+    }
   }
 
 }

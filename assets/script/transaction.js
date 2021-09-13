@@ -7,6 +7,7 @@ $(document).ready(function(){
   });
   getTransaction();
   getCustomer();
+  getItem();
 });
 
 function detailTransactionForm(id) {
@@ -19,11 +20,13 @@ function detailTransactionForm(id) {
     },
     url: "api/transaction/readDetail",
     success: function(result) {
+      var html= "";
       $('#editId').val(result.detail.id);
       $('#editCustomerName').val(result.detail.customer);
       $('#editRemark').val(result.detail.remark);
       $('#editPrice').val(result.detail.price);
       $('#editDate').val(result.detail.date);
+
     },
     error: function(result) {
       console.log(result);
@@ -34,7 +37,7 @@ function detailTransactionForm(id) {
 
 
 function detailTransactionForm2(id) {
-  $("#detailTransactionModal2").modal('show');
+  $("#detailTransactionModal").modal('show');
   $.ajax({
     type: "POST",
     dataType : "JSON",
@@ -43,7 +46,19 @@ function detailTransactionForm2(id) {
     },
     url: "api/transaction/readOrderDetail",
     success: function(result) {
+      var html="";
       console.log(result);
+      $('#editId').val(result.detail.id);
+      $('#editCustomerName').val(result.detail.customer);
+      $('#editRemark').val(result.detail.remark);
+      $('#editDate').val(result.detail.date);
+      result.order.forEach(order => {
+        if(order.isExist == 1)
+        {
+          html =  "<tr><td>"+order.item+"</td><td>"+order.qty+"</td><td>"+order.price+"</td><td>"+order.total+"</td><td><button class='btn btn-danger' onclick='deleteOrder("+order.id+")'>Hapus</button></td></tr>" + html;
+        }
+      });
+      $("#orderList").html(html);
 
     },
     error: function(result) {
@@ -152,6 +167,74 @@ function getCustomer(){
     }
   });
 }
+
+function getItem(){
+  var html1 = '<option value="0"> Silahkan pilih </option>';
+  $.ajax({
+    type: "POST",
+    dataType : "JSON",
+    data : {
+       keyword : "",
+    },
+    url: "api/goods/read",
+    success: function(result) {
+      console.log(result);
+      result.goods.forEach(goods => {
+        html1 = html1 +
+        '<option value="'+goods.id+'"> '+uppercase("Pembelian " + goods.name)+' </option>';
+      });
+    },
+    error: function(result) {
+      console.log(result);
+      notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
+    }
+  });
+  $.ajax({
+    type: "POST",
+    dataType : "JSON",
+    data : {
+       keyword : "",
+    },
+    url: "api/service/read",
+    success: function(result) {
+      console.log(result);
+      result.service.forEach(service => {
+        html1 = html1 +
+        '<option value="'+service.id+'"> '+uppercase("Layanan " + service.name)+' </option>';
+      });
+      $('#addItemId').html(html1);
+
+    },
+    error: function(result) {
+      console.log(result);
+      notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
+    }
+  });
+}
+
+function addOrderDetail(){
+  var transactionId = $('#editId').val();
+  $.ajax({
+    type: "POST",
+    dataType : "JSON",
+    data : {
+       itemId : $("#addItemId").val(),
+       qty : $("#addQty").val(),      
+       transactionId : transactionId 
+    },
+    url: "api/transaction/create/order",
+    success: function(result) {
+      console.log(result);
+      notify('fas fa-check', 'Berhasil', result.content, 'success');
+      detailTransactionForm2(transactionId);
+    },
+    error: function(result) {
+      console.log(result);
+      notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
+    }
+  });
+}
+
 
 function getErrorMsg(result){
   var responseInArray = result.split('\n');
@@ -265,6 +348,26 @@ function deleteTransaction() {
       $("#detailTransactionModal").modal('hide');
       notify('fas fa-check', 'Berhasil', result.content, 'success');
       getTransaction();
+    },
+    error: function(result) {
+      console.log(result);
+       notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
+    }
+  });
+}
+
+function deleteOrder(id) {
+  $.ajax({
+    type: "POST",
+    dataType : "JSON",
+    data : {
+       id : id,
+    },
+    url: "api/transaction/delete/order",
+    success: function(result) {
+      notify('fas fa-check', 'Sukses', "Data berhasil terhapus", 'success');
+      detailTransactionForm2($("#editId").val());
+
     },
     error: function(result) {
       console.log(result);

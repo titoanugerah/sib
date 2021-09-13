@@ -133,12 +133,7 @@ function  getService(){
             '<div class="card card-stats card-info card-round">' +
                 '<div class="card-body">' +
                   '<div class="row">' +
-                    '<div class="col-5">' +
-                      '<div class="icon-big text-center">' +
-                        '<i class="flaticon-user-5"></i>' +
-                      '</div>' +
-                    '</div>' +
-                    '<div class="col-7 col-stats">' +
+                    '<div class="col-12 col-stats">' +
                       '<div class="numbers">' +
                         '<p class="card-service"> Service </p>' +
                         '<h4 class="card-title">' + uppercase(service.name) +'</h4>' +

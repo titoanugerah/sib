@@ -78,8 +78,10 @@ $route['api/transaction/readOrderDetail'] = 'transaction/readOrderDetail';
 $route['api/transaction/recover'] = 'transaction/recover';
 $route['api/transaction/create/new'] = 'transaction/createNew';
 $route['api/transaction/create/old'] = 'transaction/createOld';
+$route['api/transaction/create/order'] = 'transaction/createOrder';
 $route['api/transaction/delete'] = 'transaction/delete';
 $route['api/transaction/update'] = 'transaction/update';
+$route['api/transaction/delete/order'] = 'transaction/deleteOrder';
 
 #Others
 $route['template'] = 'general/template';

@@ -28,6 +28,11 @@ class Transaction extends CI_Controller
     echo $this->transaction_model->readDetail();
   }
 
+  public function createOrder()
+  {
+    echo $this->transaction_model->createOrder();
+  }
+
   public function readOrderDetail()
   {
     echo $this->transaction_model->readOrderDetail();
@@ -58,6 +63,10 @@ class Transaction extends CI_Controller
     echo $this->transaction_model->delete();
   }
 
+  public function deleteOrder()
+  {
+    echo $this->transaction_model->deleteOrder();
+  }
 
 }
 
