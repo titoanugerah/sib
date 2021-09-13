@@ -72,7 +72,9 @@ $route['api/stock/create'] = 'stock/create';
 
 #Transaction
 $route['transaction'] = 'transaction/index';
+$route['transaction/report'] = 'transaction/report';
 $route['api/transaction/read'] = 'transaction/read';
+$route['api/transaction/read/datatables'] = 'transaction/datatables';
 $route['api/transaction/readDetail'] = 'transaction/readDetail';
 $route['api/transaction/readOrderDetail'] = 'transaction/readOrderDetail';
 $route['api/transaction/recover'] = 'transaction/recover';

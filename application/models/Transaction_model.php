@@ -22,6 +22,29 @@ class Transaction_model extends CI_Model
     }
   }
 
+  public function datatables()
+  {
+    $data['draw'] = 1;
+    $data['recordsTotal'] = 57;
+    $data['recordsFilterd'] = 57;
+    
+    $data['data'] = $this->core_model->readAllData('viewTransaction');
+    return json_encode($data);
+  }
+
+  public function contentReport()
+  {
+    if ($this->session->userdata['role'] == "cashier" || $this->session->userdata['role'] == "admin")
+    {
+      $data['viewName'] = 'transactionReport';
+      return $data;
+    }
+    else
+    {
+      notify("Tidak Ada Akses", "Mohon maaf anda tidak memiliki hak akses untuk dapat mengakses halaman ini, silahkan hubungi IT Admin atau Super Admin", "danger", "fas fa-ban", "dashboard" );
+    }
+  }
+
   public function createNew()
   {
     if ($this->session->userdata('role')=="cashier") {

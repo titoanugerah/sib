@@ -16,11 +16,19 @@ class Transaction extends CI_Controller
     $this->load->view('template', $this->transaction_model->content());
   }
 
-
+  public function report()
+  {
+    $this->load->view('template', $this->transaction_model->contentReport());
+  }
   #API
   public function read()
   {
     echo $this->transaction_model->read();
+  }
+
+  public function datatables()
+  {
+    echo $this->transaction_model->datatables();
   }
 
   public function readDetail()
