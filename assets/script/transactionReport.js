@@ -10,9 +10,26 @@ $(document).ready(function(){
       { "data": "id" },
       { "data": "date" },
       { "data": "customer" },
-      { "data": "status" },
+      {
+        "render": function (data, type, row) {
+            if(row.status == 1){
+              return "Menunggu antrian";
+            } else if(row.status == 2){
+              return "Sedang diproses";
+            } else if(row.status == 3){
+              return "Selesai";
+            } else {
+              return row.id;
+            }
+        }
+      },
       { "data": "subtotal" },
       { "data": "cashier" },
+      {
+        "render": function (data, type, row) {
+            return "<button type='button' class='btn btn-info' onclick=detailTransactionForm('" + row.id + "'); >Detail</button>";
+        }
+      },
     ]
   });
 
@@ -23,6 +40,42 @@ $(document).ready(function(){
       dropdownParent: $('#addSupplierModal')
   });
 });
+
+
+function detailTransactionForm(id) {
+  
+  $("#detailTransactionModal").modal('show');
+  $("#btnTransaction").hide();
+  $("#btnFinish").show();
+  $.ajax({
+    type: "POST",
+    dataType : "JSON",
+    data : {
+       id : id,
+    },
+    url: "/sib/api/transaction/readOrderDetail",
+    success: function(result) {
+      var html="";
+      console.log(result);
+      $('#editId').val(result.detail.id);
+      $('#editCustomerName').val(result.detail.customer);
+      $('#editRemark').val(result.detail.remark);
+      $('#editDate').val(result.detail.date);
+      result.order.forEach(order => {
+        if(order.isExist == 1)
+        {
+          html =  "<tr><td>"+order.item+"</td><td>"+order.qty+"</td><td>"+order.price+"</td><td>"+order.total+"</td><td><button class='btn btn-danger' onclick='deleteOrder("+order.id+")'>Hapus</button></td></tr>" + html;
+        }
+      });
+      $("#orderList").html(html);
+
+    },
+    error: function(result) {
+      console.log(result);
+      notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
+    }
+  });
+}
 
 
 function getErrorMsg(result){
