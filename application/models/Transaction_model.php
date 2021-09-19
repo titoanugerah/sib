@@ -112,7 +112,7 @@ class Transaction_model extends CI_Model
       {
         $transactionDetail = $this->core_model->readSomeData('viewDetailTransaction', 'transactionId', $this->input->post('id'));
         foreach ($transactionDetail as $transactionDetail) {
-          if($transactionDetail->categoryId == 2)
+          if($transactionDetail->categoryId == 1)
           {
             $stock = array(
               'itemId' => $transactionDetail->itemId,
