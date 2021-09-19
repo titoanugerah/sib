@@ -25,7 +25,18 @@
       <div class="row">
         <div class="card full-height  col-md-12">
           <div class="card-header">
-            <div class="card-title">Laporan Transaksi</div>
+            <div class="card-title">
+            <?php 
+            if($this->session->userdata('role') == "customer")
+            {
+              echo "Riwayat Transaksi";
+            }
+            else
+            {
+              echo "Laporan Transaksi";
+            }
+          ?>
+            </div>
             <div class="d-flex flex-wrap justify-content-around pb-2 pt-4"></div>
             <div class="card-body">      
               <table id="example" class="display" style="width:100%">
