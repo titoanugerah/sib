@@ -6,11 +6,11 @@
           <?php 
             if($this->session->userdata('role') == "customer")
             {
-                echo "Laporan Transaksi";
+              echo "Riwayat Transaksi";
             }
             else
             {
-              echo "Riwayat Transaksi";
+              echo "Laporan Transaksi";
             }
           ?>
         </h2>
