@@ -1,19 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Item_model extends CI_Model
+class Goods_model extends CI_Model
 {
 
   function __construct()
   {
     parent::__construct();
+    $this->load->model('core_model');
   }
 
   public function content()
   {
     if ($this->session->userdata['role'] == "admin")
     {
-      $data['viewName'] = 'item';
+      $data['viewName'] = 'goods';
       return $data;
     }
     else
@@ -27,14 +28,22 @@ class Item_model extends CI_Model
     if ($this->session->userdata('role')=="admin") {
       $input = $this->input->post();
       $input['adminId'] = $this->session->userdata('id');
+      $input['categoryId'] = $this->config->item('category_goods_id');
       $result = $this->core_model->createData('item',  $input);
+      $data = array(
+        'itemId' => $this->db->insert_id(),
+        'stockTypeId' => 0,
+        'qty' => 0,      
+        'adminId' => $this->session->userdata('id')
+      );
+      $result = $this->core_model->createData('stock',  $data);
       return json_encode($result);
     }
     
   }
   public function read()
   {
-    $data['item'] = $this->core_model->readAllData('item');
+    $data['goods'] = $this->core_model->readSomeData('item', 'categoryId', $this->config->item('category_goods_id'));
     return json_encode($data);
   }
 

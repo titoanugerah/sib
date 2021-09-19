@@ -1,23 +1,23 @@
 $(document).ready(function(){
   $('.select2modal').select2({
-      dropdownParent: $('#detailItemModal')
+      dropdownParent: $('#detailGoodsModal')
   });
   $('.select2addmodal').select2({
-      dropdownParent: $('#addItemModal')
+      dropdownParent: $('#addGoodsModal')
   });
-  getItem();
+  getGoods();
   getSupplier();  
 });
 
-function detailItemForm(id) {
-  $("#detailItemModal").modal('show');
+function detailGoodsForm(id) {
+  $("#detailGoodsModal").modal('show');
   $.ajax({
     type: "POST",
     dataType : "JSON",
     data : {
        id : id,
     },
-    url: "api/item/readDetail",
+    url: "api/goods/readDetail",
     success: function(result) {
       $('#editId').val(result.detail.id);
       $('#editName').val(result.detail.name);
@@ -34,11 +34,11 @@ function detailItemForm(id) {
 }
 
 $("#keyword").on('change', function(){
-  getItem();
+  getGoods();
   $("#keyword").val();
 })
 
-function updateItem(){
+function updateGoods(){
   $.ajax({
     type: "POST",
     dataType : "JSON",
@@ -49,10 +49,10 @@ function updateItem(){
        supplierId : $("#editSupplierId").val(),       
        remark : $("#editRemark").val(),       
     },
-    url: "api/item/update",
+    url: "api/goods/update",
     success: function(result) {
-      $("#detailItemModal").modal('hide');
-      getItem();
+      $("#detailGoodsModal").modal('hide');
+      getGoods();
       notify('fas fa-check', 'Berhasil', result.content, 'success');
     },
     error: function(result) {
@@ -61,13 +61,13 @@ function updateItem(){
   });
 }
 
-function addNewItemForm() {
+function addNewGoodsForm() {
   $('#keyword').val("");
-  getItem();
-  $("#addItemModal").modal('show');
+  getGoods();
+  $("#addGoodsModal").modal('show');
 }
 
-function addItem() {
+function addGoods() {
   $.ajax({
     type: "POST",
     dataType : "JSON",
@@ -77,11 +77,11 @@ function addItem() {
        supplierId : $("#addSupplierId").val(),       
        remark : $("#addRemark").val(),       
     },
-    url: "api/item/create",
+    url: "api/goods/create",
     success: function(result) {
-      $("#addItemModal").modal('hide');
+      $("#addGoodsModal").modal('hide');
       notify('fas fa-check', 'Berhasil', result.content, 'success');
-      getItem();
+      getGoods();
     },
     error: function(result) {
       console.log(result);
@@ -119,21 +119,21 @@ function getErrorMsg(result){
   return error.toString();  
 }
 
-function  getItem(){
+function  getGoods(){
   $.ajax({
     type: "POST",
     dataType : "JSON",
     data : {
        keyword : $("#keyword").val(),
     },
-    url: "api/item/read",
+    url: "api/goods/read",
     success: function(result) {
       var html = "";
      var html1 = '<option value="0"> Silahkan pilih </option>';
-      result.item.forEach(item => {
-        if(item.isExist == 1){
+      result.goods.forEach(goods => {
+        if(goods.isExist == 1){
           html = html +         
-          '<div class="col-sm-6 col-md-3" onclick="detailItemForm('+item.id+')">' +
+          '<div class="col-sm-6 col-md-3" onclick="detailGoodsForm('+goods.id+')">' +
             '<div class="card card-stats card-info card-round">' +
                 '<div class="card-body">' +
                   '<div class="row">' +
@@ -144,8 +144,8 @@ function  getItem(){
                     '</div>' +
                     '<div class="col-7 col-stats">' +
                       '<div class="numbers">' +
-                        '<p class="card-item"> Item </p>' +
-                        '<h4 class="card-title">' + uppercase(item.name) +'</h4>' +
+                        '<p class="card-goods"> Goods </p>' +
+                        '<h4 class="card-title">' + uppercase(goods.name) +'</h4>' +
                       '</div>' +
                     '</div>' +
                   '</div>' +
@@ -154,12 +154,14 @@ function  getItem(){
             '</div>';             
         } else {
           html1 = html1 +
-           '<option value="'+item.id+'"> '+uppercase(item.name)+' </option>';
+           '<option value="'+goods.id+'"> '+uppercase(goods.name)+' </option>';
         }
       });
 
-      $('#itemList').html(html);
-      $('#recoverItemId').html(html1);
+      $('#goodsList').html(html);
+      $('#recoverGoodsId').html(html1);
+      console.log(html);
+ 
     },
     error: function(result) {
       console.log(result);
@@ -197,18 +199,18 @@ function uppercase(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function deleteItem() {
+function deleteGoods() {
   $.ajax({
     type: "POST",
     dataType : "JSON",
     data : {
        id : $("#editId").val(),
     },
-    url: "api/item/delete",
+    url: "api/goods/delete",
     success: function(result) {
-      $("#detailItemModal").modal('hide');
+      $("#detailGoodsModal").modal('hide');
       notify('fas fa-check', 'Berhasil', result.content, 'success');
-      getItem();
+      getGoods();
     },
     error: function(result) {
       console.log(result);
@@ -217,20 +219,20 @@ function deleteItem() {
   });
 }
 
-function recoverItem() {
-  if($('#recoverItemId').val()!=0)
+function recoverGoods() {
+  if($('#recoverGoodsId').val()!=0)
   {
     $.ajax({
       type: "POST",
       dataType : "JSON",
       data : {
-        id : $("#recoverItemId").val(),
+        id : $("#recoverGoodsId").val(),
       },
-      url: "api/item/recover",
+      url: "api/goods/recover",
       success: function(result) {
-        $("#addItemModal").modal('hide');
+        $("#addGoodsModal").modal('hide');
         notify('fas fa-check', 'Berhasil', result.content, 'success');
-        getItem();
+        getGoods();
       },
       error: function(result) {
         notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');

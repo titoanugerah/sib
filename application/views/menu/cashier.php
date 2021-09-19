@@ -11,3 +11,10 @@
     <p>Transaksi</p>
   </a>
 </li>
+
+<li class="nav-item active" >
+  <a href="<?php echo base_url('transaction/report'); ?>">
+    <i class="fas fa-book"></i>
+    <p>Laporan Transaksi</p>
+  </a>
+</li>

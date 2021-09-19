@@ -44,16 +44,16 @@ $route['api/supplier/create'] = 'supplier/create';
 $route['api/supplier/delete'] = 'supplier/delete';
 $route['api/supplier/update'] = 'supplier/update';
 
-#Item
-$route['item'] = 'item/index';
-$route['api/item/read'] = 'item/read';
-$route['api/item/readDetail'] = 'item/readDetail';
-$route['api/item/recover'] = 'item/recover';
-$route['api/item/create'] = 'item/create';
-$route['api/item/delete'] = 'item/delete';
-$route['api/item/update'] = 'item/update';
+#Goods
+$route['goods'] = 'goods/index';
+$route['api/goods/read'] = 'goods/read';
+$route['api/goods/readDetail'] = 'goods/readDetail';
+$route['api/goods/recover'] = 'goods/recover';
+$route['api/goods/create'] = 'goods/create';
+$route['api/goods/delete'] = 'goods/delete';
+$route['api/goods/update'] = 'goods/update';
 
-#Item
+#Service
 $route['service'] = 'service/index';
 $route['api/service/read'] = 'service/read';
 $route['api/service/readDetail'] = 'service/readDetail';
@@ -62,15 +62,28 @@ $route['api/service/create'] = 'service/create';
 $route['api/service/delete'] = 'service/delete';
 $route['api/service/update'] = 'service/update';
 
+#Stock
+$route['stock'] = 'stock/index';
+$route['stock/report'] = 'stock/report';
+$route['api/stock/read/datatables'] = 'stock/datatables';
+$route['api/stock/read'] = 'stock/read';
+$route['api/stock/readDetail'] = 'stock/readDetail';
+$route['api/stock/create'] = 'stock/create';
+
 #Transaction
 $route['transaction'] = 'transaction/index';
+$route['transaction/report'] = 'transaction/report';
 $route['api/transaction/read'] = 'transaction/read';
+$route['api/transaction/read/datatables'] = 'transaction/datatables';
 $route['api/transaction/readDetail'] = 'transaction/readDetail';
+$route['api/transaction/readOrderDetail'] = 'transaction/readOrderDetail';
 $route['api/transaction/recover'] = 'transaction/recover';
 $route['api/transaction/create/new'] = 'transaction/createNew';
 $route['api/transaction/create/old'] = 'transaction/createOld';
+$route['api/transaction/create/order'] = 'transaction/createOrder';
 $route['api/transaction/delete'] = 'transaction/delete';
 $route['api/transaction/update'] = 'transaction/update';
+$route['api/transaction/delete/order'] = 'transaction/deleteOrder';
 
 #Others
 $route['template'] = 'general/template';

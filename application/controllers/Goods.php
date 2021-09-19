@@ -1,50 +1,50 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Item extends CI_Controller
+class Goods extends CI_Controller
 {
 
   function __construct()
   {
     parent::__construct();
     $this->load->model('core_model');
-    $this->load->model('item_model');
+    $this->load->model('goods_model');
   }
 
   public function index(){
-    $this->load->view('template', $this->item_model->content());
+    $this->load->view('template', $this->goods_model->content());
   }
 
 
   #API
   public function read()
   {
-    echo $this->item_model->read();
+    echo $this->goods_model->read();
   }
 
   public function readDetail()
   {
-    echo $this->item_model->readDetail();
+    echo $this->goods_model->readDetail();
   }
 
   public function recover()
   {
-    echo $this->item_model->recover();
+    echo $this->goods_model->recover();
   }
 
   public function create()
   {
-    echo $this->item_model->create();
+    echo $this->goods_model->create();
   }
 
   public function update()
   {
-    echo $this->item_model->update();
+    echo $this->goods_model->update();
   }
 
   public function delete()
   {
-    echo $this->item_model->delete();
+    echo $this->goods_model->delete();
   }
 
 }

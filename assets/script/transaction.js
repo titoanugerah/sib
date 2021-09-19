@@ -7,10 +7,14 @@ $(document).ready(function(){
   });
   getTransaction();
   getCustomer();
+  getItem();
 });
 
 function detailTransactionForm(id) {
   $("#detailTransactionModal").modal('show');
+  $("#btnTransaction").show();
+  $("#btnFinish").hide();
+
   $.ajax({
     type: "POST",
     dataType : "JSON",
@@ -19,11 +23,49 @@ function detailTransactionForm(id) {
     },
     url: "api/transaction/readDetail",
     success: function(result) {
+      var html= "";
       $('#editId').val(result.detail.id);
       $('#editCustomerName').val(result.detail.customer);
       $('#editRemark').val(result.detail.remark);
       $('#editPrice').val(result.detail.price);
       $('#editDate').val(result.detail.date);
+
+    },
+    error: function(result) {
+      console.log(result);
+      notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
+    }
+  });
+}
+
+
+function detailTransactionForm2(id) {
+  
+  $("#detailTransactionModal").modal('show');
+  $("#btnTransaction").hide();
+  $("#btnFinish").show();
+  $.ajax({
+    type: "POST",
+    dataType : "JSON",
+    data : {
+       id : id,
+    },
+    url: "api/transaction/readOrderDetail",
+    success: function(result) {
+      var html="";
+      console.log(result);
+      $('#editId').val(result.detail.id);
+      $('#editCustomerName').val(result.detail.customer);
+      $('#editRemark').val(result.detail.remark);
+      $('#editDate').val(result.detail.date);
+      result.order.forEach(order => {
+        if(order.isExist == 1)
+        {
+          html =  "<tr><td>"+order.item+"</td><td>"+order.qty+"</td><td>"+order.price+"</td><td>"+order.total+"</td><td><button class='btn btn-danger' onclick='deleteOrder("+order.id+")'>Hapus</button></td></tr>" + html;
+        }
+      });
+      $("#orderList").html(html);
+
     },
     error: function(result) {
       console.log(result);
@@ -132,6 +174,74 @@ function getCustomer(){
   });
 }
 
+function getItem(){
+  var html1 = '<option value="0"> Silahkan pilih </option>';
+  $.ajax({
+    type: "POST",
+    dataType : "JSON",
+    data : {
+       keyword : "",
+    },
+    url: "api/goods/read",
+    success: function(result) {
+      console.log(result);
+      result.goods.forEach(goods => {
+        html1 = html1 +
+        '<option value="'+goods.id+'"> '+uppercase("Pembelian " + goods.name)+' </option>';
+      });
+    },
+    error: function(result) {
+      console.log(result);
+      notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
+    }
+  });
+  $.ajax({
+    type: "POST",
+    dataType : "JSON",
+    data : {
+       keyword : "",
+    },
+    url: "api/service/read",
+    success: function(result) {
+      console.log(result);
+      result.service.forEach(service => {
+        html1 = html1 +
+        '<option value="'+service.id+'"> '+uppercase("Layanan " + service.name)+' </option>';
+      });
+      $('#addItemId').html(html1);
+
+    },
+    error: function(result) {
+      console.log(result);
+      notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
+    }
+  });
+}
+
+function addOrderDetail(){
+  var transactionId = $('#editId').val();
+  $.ajax({
+    type: "POST",
+    dataType : "JSON",
+    data : {
+       itemId : $("#addItemId").val(),
+       qty : $("#addQty").val(),      
+       transactionId : transactionId 
+    },
+    url: "api/transaction/create/order",
+    success: function(result) {
+      console.log(result);
+      notify('fas fa-check', 'Berhasil', result.content, 'success');
+      detailTransactionForm2(transactionId);
+    },
+    error: function(result) {
+      console.log(result);
+      notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
+    }
+  });
+}
+
+
 function getErrorMsg(result){
   var responseInArray = result.split('\n');
   for(var i=0; i < responseInArray.length; i++) {
@@ -172,35 +282,39 @@ function getTransaction(){
     success: function(result) {
       var html = "";
       var color = "info";
+      var status = "Checkin";
       var form = "detailTransactionForm";
      var html1 = '<option value="0"> Silahkan pilih </option>';
       result.transaction.forEach(transaction => {
         if(transaction.isExist == 1){
           if(transaction.status == 1)
           {
-             color = "info"
+             form = "detailTransactionForm";
+             color = "info";
+             status = "Menunggu giliran";
+            
           }
           else if(transaction.status == 2)
           {
-            color = "warning"
+            form = "detailTransactionForm2";
+            color = "warning";
+            status = "Diproses";
           }
           else if(transaction.status == 3)
           {
-            color = "success"
+            form = "history";
+            color = "success";
+            status = "Selesai";
           }          
-          else if(transaction.status == 4)
-          {
-            color = "danger"
-          }
 
           html = html +         
-          '<div class="col-sm-6 col-md-4" onclick="detailTransactionForm('+transaction.id+')">' +
+          '<div class="col-sm-6 col-md-4" onclick="'+form+'('+transaction.id+')">' +
             '<div class="card card-stats card-'+color+' card-round">' +
                 '<div class="card-body">' +
                   '<div class="row">' + 
                     '<div class="col-12 col-stats">' +
                       '<div class="numbers">' +
-                        '<p class="card-transaction"> Transaction </p>' +
+                        '<p class="card-transaction"> '+status+' </p>' +
                         '<h4 class="card-title">' + uppercase(transaction.customer) +'</h4>' +
                       '</div>' +
                     '</div>' +
@@ -248,6 +362,26 @@ function deleteTransaction() {
   });
 }
 
+function deleteOrder(id) {
+  $.ajax({
+    type: "POST",
+    dataType : "JSON",
+    data : {
+       id : id,
+    },
+    url: "api/transaction/delete/order",
+    success: function(result) {
+      notify('fas fa-check', 'Sukses', "Data berhasil terhapus", 'success');
+      detailTransactionForm2($("#editId").val());
+
+    },
+    error: function(result) {
+      console.log(result);
+       notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
+    }
+  });
+}
+
 function processTransaction() {
   $.ajax({
     type: "POST",
@@ -255,6 +389,27 @@ function processTransaction() {
     data : {
        id : $("#editId").val(),
        status : 2
+    },
+    url: "api/transaction/update",
+    success: function(result) {
+      $("#detailTransactionModal").modal('hide');
+      notify('fas fa-check', 'Berhasil', result.content, 'success');
+      getTransaction();
+    },
+    error: function(result) {
+      console.log(result);
+       notify('fas fa-times', 'Gagal', getErrorMsg(result.responseText), 'danger');
+    }
+  });
+}
+
+function finishTransaction() {
+  $.ajax({
+    type: "POST",
+    dataType : "JSON",
+    data : {
+       id : $("#editId").val(),
+       status : 3
     },
     url: "api/transaction/update",
     success: function(result) {

@@ -22,15 +22,22 @@
 
 <li class="nav-item active" >
   <a href="<?php echo base_url('supplier'); ?>">
-    <i class="fas fa-users"></i>
+    <i class="fas fa-address-card"></i>
     <p>Supplier</p>
   </a>
 </li>
 
 <li class="nav-item active" >
-  <a href="<?php echo base_url('item'); ?>">
-    <i class="fas fa-list"></i>
+  <a href="<?php echo base_url('goods'); ?>">
+    <i class="fas fa-box"></i>
     <p>Barang</p>
+  </a>
+</li>
+
+<li class="nav-item active" >
+  <a href="<?php echo base_url('stock'); ?>">
+    <i class="fas fa-truck-loading"></i>
+    <p>Stok Barang</p>
   </a>
 </li>
 
@@ -42,15 +49,15 @@
 </li>
 
 <li class="nav-item active" >
-  <a href="<?php echo base_url('report/transaction'); ?>">
-    <i class="fas fa-sticky-note"></i>
+  <a href="<?php echo base_url('transaction/report'); ?>">
+    <i class="fas fa-book-reader"></i>
     <p>Laporan Transaksi</p>
   </a>
 </li> 
 
 <li class="nav-item active" >
-  <a href="<?php echo base_url('report/stock'); ?>">
-    <i class="fas fa-sticky-note"></i>
+  <a href="<?php echo base_url('stock/report'); ?>">
+    <i class="fas fa-book-open"></i>
     <p>Laporan Barang</p>
   </a>
 </li> 

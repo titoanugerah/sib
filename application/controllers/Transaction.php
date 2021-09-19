@@ -16,16 +16,34 @@ class Transaction extends CI_Controller
     $this->load->view('template', $this->transaction_model->content());
   }
 
-
+  public function report()
+  {
+    $this->load->view('template', $this->transaction_model->contentReport());
+  }
   #API
   public function read()
   {
     echo $this->transaction_model->read();
   }
 
+  public function datatables()
+  {
+    echo $this->transaction_model->datatables();
+  }
+
   public function readDetail()
   {
     echo $this->transaction_model->readDetail();
+  }
+
+  public function createOrder()
+  {
+    echo $this->transaction_model->createOrder();
+  }
+
+  public function readOrderDetail()
+  {
+    echo $this->transaction_model->readOrderDetail();
   }
 
   public function recover()
@@ -51,6 +69,11 @@ class Transaction extends CI_Controller
   public function delete()
   {
     echo $this->transaction_model->delete();
+  }
+
+  public function deleteOrder()
+  {
+    echo $this->transaction_model->deleteOrder();
   }
 
 }
