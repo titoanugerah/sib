@@ -110,7 +110,19 @@ class Transaction_model extends CI_Model
     {
       if($this->input->post('status')==3)
       {
-        $transactionDetail = $this->core_model->readSomeData('detailTransaction', 'transactionId', $this->input->post('id'));
+        $transactionDetail = $this->core_model->readSomeData('viewDetailTransaction', 'transactionId', $this->input->post('id'));
+        foreach ($transactionDetail as $transactionDetail) {
+          if($transactionDetail->categoryId == 2)
+          {
+            $stock = array(
+              'itemId' => $transactionDetail->itemId,
+              'qty' => $transactionDetail->qty,
+              'stockTypeId' => -3,
+              'adminId' => $this->session->userdata('id') 
+            );
+            $this->core_model->createData('stock', $stock);
+          }
+        }
         
       }
       return json_encode($this->core_model->updateDataBatch('transaction',  'id', $this->input->post('id'), $this->input->post()));
