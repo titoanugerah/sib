@@ -2,7 +2,18 @@
   <div class="page-inner py-5">
     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
       <div>
-        <h2 class="text-white pb-2 fw-bold" >Laporan Transaksi</h2>
+        <h2 class="text-white pb-2 fw-bold" >
+          <?php 
+            if($this->session->userdata('role') == "customer")
+            {
+                echo "Laporan Transaksi";
+            }
+            else
+            {
+              echo "Riwayat Transaksi";
+            }
+          ?>
+        </h2>
       </div>
     </div>
   </div>
